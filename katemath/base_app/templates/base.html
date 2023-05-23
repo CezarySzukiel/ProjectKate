@@ -6,20 +6,20 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% block title %}
-    <title>Main page</title>
-    {% endblock %}
+    <title>Katemath</title>
     <link rel="stylesheet" type="text/css" href={% static 'style.css' %}>
 </head>
 <body>
     <header>
         <nav>
             <ul class="menu">
-                <li><a href="#">Zadania</a></li>
+                <li><a href="{% url 'exercises_list' %}">Zadania</a></li>
+{#                <li><a href="{% url 'exercises_create' %}">Nowe zadanie</a></li>#}
                 <li><a href="#">Zarejestruj</a></li>
                 <li><a href="#">Zaloguj</a></li>
                 <li><a href="#">Nazwa użytkownika<i class="fas fa-user"></i></a></li>
             </ul>
+
         </nav>
     </header>
 {% block content %}

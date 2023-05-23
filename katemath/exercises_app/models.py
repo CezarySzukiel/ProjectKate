@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
+from django.urls import reverse
+
 
 # Create your models here.
 
@@ -15,6 +17,9 @@ class Exercises(models.Model):
     solution_similar = models.ManyToManyField('self', blank=True)
     type = models.IntegerField()
     advanced_level = models.BooleanField(default=False)
+
+    # def get_absolute_url(self):
+    #     return reverse('edit_exercise', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.description
