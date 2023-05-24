@@ -8,7 +8,7 @@ from exercises_app.models import Exercises, Subsections, Sections, Answer
 from exercises_app.forms import SortForm, SortBySubsectionsForm, SortBySectionsForm
 
 
-class ExercisesListView(FormMixin, ListView):
+class ExercisesListView(ListView):
     template_name = 'exercises_app/exercises_list_view.html'
     model = Exercises
     paginate_by = 10
