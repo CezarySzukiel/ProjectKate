@@ -18,3 +18,12 @@ class SortBySubsectionsForm(forms.Form):
 
 class SortBySectionsForm(forms.Form):
     section = forms.ModelChoiceField(queryset=Sections.objects.all(), label='Rozdział: ')
+
+
+class AnswerForm(forms.Form):
+    answer = forms.CharField(max_length=128, label='Odpowiedź: ')
+
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     answer = cleaned_data.get('answer')
+    #     return cleaned_data

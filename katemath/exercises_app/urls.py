@@ -19,5 +19,6 @@ from exercises_app import views
 
 urlpatterns = [
     path('list/', views.ExercisesListView.as_view(), name='exercises_list'),
+    path('exercise_details/<int:pk>', views.ExerciseDetailsView.as_view(), name='exercise_details'),
     # path('create/', views.ExercisesCreateView.as_view(), name='exercises_create'),
 ]

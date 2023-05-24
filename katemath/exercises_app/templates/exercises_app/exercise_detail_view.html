@@ -1,4 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{{ exercise }}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+    Twoja odpowiedź to: {{ answer }}<br>
+    Prawidłowa odpowiedź to: {{ correct_answer }}<br>
+    fake answers: {{ fake_answers }}
+    {% if correct %}
+        <p>Poprawna odpowiedź!</p>
+    {% else %}
+        <p>Niepoprawna odpowiedź!</p>
+    {% endif %}
 {% endblock %}

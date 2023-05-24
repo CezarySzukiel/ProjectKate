@@ -5,7 +5,7 @@ from django.views.generic import ListView, CreateView, FormView
 from django.views.generic.edit import FormMixin
 
 from exercises_app.models import Exercises, Subsections, Sections, Answer
-from exercises_app.forms import SortForm, SortBySubsectionsForm, SortBySectionsForm
+from exercises_app.forms import SortForm, SortBySubsectionsForm, SortBySectionsForm, AnswerForm
 
 
 class ExercisesListView(ListView):
@@ -32,10 +32,40 @@ class ExercisesListView(ListView):
     #     return queryset
 
 
-
 # jakiego widoku użyć do wyświetlenia zadania, pobrania odpowiedzi i porównania odpowiedzi z rozwiązaniem?
 
+class ExerciseDetailsView(View):
+    template_name = 'exercises_app/exercise_detail_view.html'
 
+    def get(self, request, pk):
+        exercise = Exercises.objects.get(pk=pk)
+        answers = Answer.objects.filter(exercise=exercise)
+        context = {
+            'exercise': exercise,
+            'answers': answers,
+            'form': AnswerForm(),
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, pk):
+        """Pobiera odpowiedź użytkownika i sprawdza z poprawną odpowiedzią"""
+        answer = request.POST.get('answer', '')
+        exercise = Exercises.objects.get(pk=pk)
+        correct_answer = Answer.objects.filter(exercise=exercise, correct=True)
+        correct_answer = str(correct_answer.values_list('answer', flat=True)[0])
+        fake_answers = Answer.objects.filter(exercise=exercise, correct=False)
+        context = {
+            'exercise': exercise,
+            'answer': answer,
+            'correct_answer': correct_answer,
+            'fake_answers': fake_answers, #todo to delete
+        }
+        if answer == correct_answer:
+            context['correct'] = True
+        else:
+            context['correct'] = False
+
+        return render(request, self.template_name, context)
 
 
 
