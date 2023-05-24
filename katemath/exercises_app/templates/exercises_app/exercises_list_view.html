@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-
+    <p>{{ sort_form }}</p>
     <ul>
         {%  for obj in object_list %}
             <li>{{ obj }}</li>
         {% endfor %}
     </ul>
     <p>{{ sections }}</p>
+    <p>{{ exercises }}</p>
     <p>{{ subsections }}</p>
 {#    <p>{{ related }}</p>#}
 

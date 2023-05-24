@@ -4,10 +4,11 @@ from django.views import View
 from django.views.generic import ListView, CreateView
 
 from exercises_app.models import Exercises, Subsections, Sections, Answer
+from exercises_app.forms import SortForm, SortBySubsectionForm
 
 
 class ExercisesListView(ListView):
-    template_name = 'list_view.html'
+    template_name = 'exercises_app/exercises_list_view.html'
     model = Exercises
     paginate_by = 10
 
@@ -15,6 +16,14 @@ class ExercisesListView(ListView):
         context = super().get_context_data(**kwargs)
         context['subsections'] = Subsections.objects.all()
         context['sections'] = Sections.objects.all()
+        context['sort_form'] = SortBySubsectionForm()
+        return context
+
+
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     sort_by = self.request.GET.get('sort_by', '')
+
         # related = Exercises.objects.select_related('subsections').all()
         # context['related'] = Exercises.objects.select_related('subsections').all()
 

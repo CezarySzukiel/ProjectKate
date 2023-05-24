@@ -47,3 +47,9 @@ class Subsections(models.Model):
 
     def __str__(self):
         return self.name
+
+    @staticmethod
+    def get_sort_choices(self):
+        """Pobiera unikalne wartości i zwraca listę krotek"""
+        sort_values = Subsections.objects.values_list('name', flat=True).distinct().order_by('name')
+        return [(value, value) for value in sort_values]
