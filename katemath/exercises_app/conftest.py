@@ -21,8 +21,9 @@ def subsections(sections):
 
 @pytest.fixture
 def exercises(subsections):
+    """Zwraca listę zadan. exercise[2] ma kilka 3 odpowiedzi, z czego 1 poprawna"""
     lst = []
-    lst.append(Exercises.objects.create(descriotion="Zadanie 1",
+    lst.append(Exercises.objects.create(description="Zadanie 1",
                                         subsection=subsections[0],
                                         difficult=1,
                                         points=1,
@@ -33,7 +34,7 @@ def exercises(subsections):
                                         subsection=subsections[1],
                                         difficult=2,
                                         points=2,
-                                        solution_similar=exercises[0], # to nie zadziała bo exercises jeszcze nie istnieje?
+                                        # solution_similar=exercises[0], # to nie zadziała bo exercises jeszcze nie istnieje?
                                         type=1,
                                         advanced_level=True))
     lst.append(Exercises.objects.create(description="Zadanie 3",

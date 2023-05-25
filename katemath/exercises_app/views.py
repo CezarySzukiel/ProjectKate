@@ -35,7 +35,7 @@ class ExerciseDetailsView(View):
         exercise = Exercises.objects.get(pk=pk)
         correct_answer = Answer.objects.filter(exercise=exercise, correct=True)
         correct_answer = str(correct_answer.values_list('answer', flat=True)[0])
-        fake_answers = Answer.objects.filter(exercise=exercise, correct=False)
+        # fake_answers = Answer.objects.filter(exercise=exercise, correct=False)
         context = {
             'exercise': exercise,
             'answer': answer,
@@ -45,13 +45,13 @@ class ExerciseDetailsView(View):
             context['correct'] = True
         else:
             context['correct'] = False
-        return render(request, 'exercises_app/summary_view.html', context)
+        return render(request, 'exercises_app/submit_view.html', context)
 
 
 class SubmitView(View):
-    template_name = 'exercises_app/summary_view.html'
+    template_name = 'exercises_app/submit_view.html'
 
-    def get(self, request, pk):
+    def get(self, request):
         return render(request, self.template_name)
 
 
