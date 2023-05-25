@@ -12,5 +12,5 @@ def test_exercises_list_view():
     url = reverse('exercises_list')
     response = client.get(url)
     assert response.status_code == 200
-    # paginacji nie sprawdzamy bo to jest funkcja wbudowana w django
+    # paginacji nie sprawdzamy, bo to jest funkcja wbudowana w django
 
