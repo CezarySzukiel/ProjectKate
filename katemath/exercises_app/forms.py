@@ -11,7 +11,7 @@ class SortForm(forms.Form):
     )
     sort_by = forms.ChoiceField(choices=SORT_CHOICES, label='Sortuj po: ')
 
-
+# todo 2 poniższe formularze są chyba błędne
 class SortBySubsectionsForm(forms.Form):
     subsection = forms.ModelChoiceField(queryset=Subsections.objects.all(), label='Podrozdział: ')
 

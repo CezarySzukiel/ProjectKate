@@ -68,6 +68,11 @@ class ExerciseDetailsView(View):
         return render(request, self.template_name, context)
 
 
+class SubmitView(View):
+    template_name = 'exercises_app/summary_view.html'
+
+    def get(self, request, pk):
+        return render(request, self.template_name)
 
 
 
