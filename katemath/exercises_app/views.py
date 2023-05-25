@@ -38,6 +38,7 @@ class ExerciseDetailsView(View):
     template_name = 'exercises_app/exercise_detail_view.html'
 
     def get(self, request, pk):
+        """Wyświetla zadanie i formularz do wpisania odpowiedzi"""
         exercise = Exercises.objects.get(pk=pk)
         answers = Answer.objects.filter(exercise=exercise)
         context = {
@@ -58,14 +59,23 @@ class ExerciseDetailsView(View):
             'exercise': exercise,
             'answer': answer,
             'correct_answer': correct_answer,
-            'fake_answers': fake_answers, #todo to delete
         }
         if answer == correct_answer:
             context['correct'] = True
         else:
             context['correct'] = False
+        return render(request, 'exercises_app/summary_view.html', context)
 
-        return render(request, self.template_name, context)
+
+
+
+
+
+
+
+
+
+
 
 
 class SubmitView(View):

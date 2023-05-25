@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if correct %}
+        <h1>Poprawna odpowiedź!</h1>
+        <h3>{{ answer }}</h3>
+    {% else %}
+        <h1>Niepoprawna odpowiedź!</h1>
+        <h3>Prawidłowa odpowiedź to: {{ correct_answer }}</h3>
+    {% endif %}
+{% endblock %}
