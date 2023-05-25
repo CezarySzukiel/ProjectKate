@@ -45,14 +45,21 @@ class ExerciseDetailsView(View):
             context['correct'] = True
         else:
             context['correct'] = False
-        return render(request, 'exercises_app/submit_view.html', context)
+            # przekierowanie zrobić ciasteczkami i redirectem
+            res = redirect('exercise_submit', pk=pk)
+            res.set_cookie('correct_answer', correct_answer)
+            return res
+        # return render(request, 'exercises_app/submit_view.html', context)
 
 
 class SubmitView(View):
     template_name = 'exercises_app/submit_view.html'
 
-    def get(self, request):
-        return render(request, self.template_name)
+    def get(self, request, pk):
+        print(request.COOKIES)
+        res = render(request, self.template_name)
+        res.delete_cookie('correct_answer')
+        return res
 
 
 

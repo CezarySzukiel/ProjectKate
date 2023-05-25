@@ -104,12 +104,12 @@ def answer(exercises):
                                      answer="Odpowiedź 2",
                                      correct=True))
     lst.append(Answer.objects.create(exercise=exercises[2],
-                                     answer="Odpowiedź 3",
+                                     answer='correct answer',
                                      correct=True))
     lst.append(Answer.objects.create(exercise=exercises[2],
-                                     answer="Odpowiedź 4",
+                                     answer='incorrect answer1',
                                      correct=False))
     lst.append(Answer.objects.create(exercise=exercises[2],
-                                     answer="Odpowiedź 5",
+                                     answer='incorrect answer2',
                                      correct=False))
     return lst
