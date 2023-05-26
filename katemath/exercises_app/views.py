@@ -36,30 +36,20 @@ class ExerciseDetailsView(View):
         correct_answer = Answer.objects.filter(exercise=exercise, correct=True)
         correct_answer = str(correct_answer.values_list('answer', flat=True)[0])
         # fake_answers = Answer.objects.filter(exercise=exercise, correct=False)
-        context = {
-            'exercise': exercise,
-            'answer': answer,
-            'correct_answer': correct_answer,
-        }
+        res = redirect('exercise_submit', pk=pk)
         if answer == correct_answer:
-            context['correct'] = True
-            res = redirect('exercise_submit', pk=pk)
             res.set_cookie('correct_answer', correct_answer)
             return res
-        else:
-            context['message'] = 'postaraj się bardziej'
-            # przekierowanie zrobić ciasteczkami i redirectem
-
-        # return render(request, 'exercises_app/submit_view.html', context)
+        return res
 
 
 class SubmitView(View):
     template_name = 'exercises_app/submit_view.html'
 
     def get(self, request, pk):
-        print(request.COOKIES)
         res = render(request, self.template_name)
         res.delete_cookie('correct_answer')
+        res.delete_cookie('user_answer')
         return res
 
 
