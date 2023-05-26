@@ -20,6 +20,6 @@ from exercises_app import views
 urlpatterns = [
     path('list/', views.ExercisesListView.as_view(), name='exercises_list'),
     path('exercise_details/<int:pk>', views.ExerciseDetailsView.as_view(), name='exercise_details'),
-    path('exercise_details/<int:pk>/summary', views.SubmitView.as_view(), name='exercise_submit'),
+    path('exercise_details/<int:pk>/submit', views.SubmitView.as_view(), name='exercise_submit'),
     # path('create/', views.ExercisesCreateView.as_view(), name='exercises_create'),
 ]

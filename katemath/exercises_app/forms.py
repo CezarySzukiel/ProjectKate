@@ -21,7 +21,7 @@ class SortBySectionsForm(forms.Form):
 
 
 class AnswerForm(forms.Form):
-    answer = forms.CharField(max_length=128, label='Odpowiedź: ')
+    user_answer = forms.CharField(max_length=128, label='Odpowiedź: ')
 
     # def clean(self):
     #     cleaned_data = super().clean()

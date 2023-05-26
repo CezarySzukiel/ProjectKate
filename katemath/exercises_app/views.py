@@ -31,13 +31,14 @@ class ExerciseDetailsView(View):
 
     def post(self, request, pk):
         """Pobiera odpowiedź użytkownika i sprawdza z poprawną odpowiedzią"""
-        answer = request.POST.get('answer', '')
+        # try?
+        user_answer = request.POST.get('user_answer', '')
         exercise = Exercises.objects.get(pk=pk)
         correct_answer = Answer.objects.filter(exercise=exercise, correct=True)
         correct_answer = str(correct_answer.values_list('answer', flat=True)[0])
         # fake_answers = Answer.objects.filter(exercise=exercise, correct=False)
         res = redirect('exercise_submit', pk=pk)
-        if answer == correct_answer:
+        if user_answer == correct_answer:
             res.set_cookie('correct_answer', correct_answer)
             return res
         return res

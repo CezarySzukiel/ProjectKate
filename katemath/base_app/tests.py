@@ -13,3 +13,10 @@ def test_base_view():
     url = reverse('base')
     response = client.get(url)
     assert response.status_code == 200
+
+@pytest.mark.django_db
+def test_content_base_view():
+    client = Client()
+    url = reverse('base')
+    response = client.get(url)
+    assert 'Base template' in response.content.decode()
