@@ -54,24 +54,3 @@ class SubmitView(View):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class ExercisesCreateView(CreateView):
-    # template_name = 'form.html'
-    # models = [Exercises, Subsections]
-    # fields = '__all__'
-    # success_url = reverse_lazy('exercises_list')
