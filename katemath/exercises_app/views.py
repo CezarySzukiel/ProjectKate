@@ -5,7 +5,7 @@ from django.views.generic import ListView, CreateView, FormView
 from django.views.generic.edit import FormMixin
 
 from exercises_app.models import Exercises, Subsections, Sections, Answer
-from exercises_app.forms import SortForm, SortBySubsectionsForm, SortBySectionsForm, AnswerForm
+from exercises_app.forms import SortForm, AnswerForm
 
 
 class ExercisesListView(ListView):
