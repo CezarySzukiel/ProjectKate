@@ -43,12 +43,13 @@ class ExerciseDetailsView(View):
         }
         if answer == correct_answer:
             context['correct'] = True
-        else:
-            context['correct'] = False
-            # przekierowanie zrobić ciasteczkami i redirectem
             res = redirect('exercise_submit', pk=pk)
             res.set_cookie('correct_answer', correct_answer)
             return res
+        else:
+            context['message'] = 'postaraj się bardziej'
+            # przekierowanie zrobić ciasteczkami i redirectem
+
         # return render(request, 'exercises_app/submit_view.html', context)
 
 
