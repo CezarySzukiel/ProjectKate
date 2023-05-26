@@ -15,11 +15,10 @@
             <ul class="menu">
                 <li><a href="{% url 'exercises_list' %}">Zadania</a></li>
 {#                <li><a href="{% url 'exercises_create' %}">Nowe zadanie</a></li>#}
-                <li><a href="#">Zarejestruj</a></li>
-                <li><a href="#">Zaloguj</a></li>
+                <li><a href="{% url 'register' %}">Zarejestruj</a></li>
+                <li><a href="{% url 'login' %}">Zaloguj</a></li>
                 <li><a href="#">Nazwa użytkownika<i class="fas fa-user"></i></a></li>
             </ul>
-
         </nav>
     </header>
 {% block content %}
