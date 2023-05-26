@@ -14,10 +14,14 @@
         <nav>
             <ul class="menu">
                 <li><a href="{% url 'exercises_list' %}">Zadania</a></li>
-{#                <li><a href="{% url 'exercises_create' %}">Nowe zadanie</a></li>#}
-                <li><a href="{% url 'register' %}">Zarejestruj</a></li>
-                <li><a href="{% url 'login' %}">Zaloguj</a></li>
-                <li><a href="#">Nazwa użytkownika<i class="fas fa-user"></i></a></li>
+                {% if not user.is_authenticated %}
+                    <li><a href="{% url 'register' %}">Zarejestruj</a></li>
+                    <li><a href="{% url 'login' %}">Zaloguj</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <li><a  href="#">{{ user.username }}<i class="fas fa-user"></i></a></li>
+                    <li><a href="{% url 'logout' %}">wyloguj</a> </li>
+                {% endif %}
             </ul>
         </nav>
     </header>

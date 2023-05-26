@@ -1,4 +1,4 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.views import View
 
@@ -37,3 +37,9 @@ class LoginView(View):
                 login(request, user)
             return redirect('base')
         return render(request, 'form.html', {'form': form})
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('base')
