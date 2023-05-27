@@ -6,14 +6,14 @@ from .models import UserSettings
 
 @pytest.fixture
 def user():
-    return User.objects.create(username='test_user',
+    return User.objects.create_user(username='test_user',
                                email='testuser@wp.pl',
-                               password1='testpassword')
+                               password='testpassword')
 
 
-@pytest.fixture
-def user_settings():
-    lst = []
-    lst.append(UserSettings.objects.create(user_id=1,
-                                           level=False,
-                                           points=0))
+# @pytest.fixture
+# def user_settings():
+#     lst = []
+#     lst.append(UserSettings.objects.create(user_id=1,
+#                                            level=False,
+#                                            points=0))
