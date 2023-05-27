@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Katemath</title>
+    <link rel="stylesheet" type="text/css" href={% static 'style.css' %}>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'exercises_list' %}">Zadania</a></li>
+                {% if not user.is_authenticated %}
+                    <li><a href="{% url 'register' %}">Zarejestruj</a></li>
+                    <li><a href="{% url 'login' %}">Zaloguj</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <li><a  href="#">{{ user.username }}<i class="fas fa-user"></i></a></li>
+                    <li><a href="{% url 'logout' %}">wyloguj</a> </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+{% block content %}
+    <h1>Base template</h1>
+{% endblock %}
+</body>
+</html>

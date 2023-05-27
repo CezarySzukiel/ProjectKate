@@ -1,5 +1,5 @@
 """
-URL configuration for katemath project.
+URL configuration for Katemath project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -14,13 +14,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from exercises_app import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('base_app.urls')),
-    path('exercises/', include('exercises_app.urls')),
-    path('users/', include('users_app.urls')),
-
+    path('list/', views.ExercisesListView.as_view(), name='exercises_list'),
+    path('exercise_details/<int:pk>', views.ExerciseDetailsView.as_view(), name='exercise_details'),
+    path('exercise_details/<int:pk>/summary', views.SubmitView.as_view(), name='exercise_submit'),
+    # path('create/', views.ExercisesCreateView.as_view(), name='exercises_create'),
 ]
