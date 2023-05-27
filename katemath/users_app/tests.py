@@ -96,3 +96,23 @@ def test_login_post_invalid_form(client):
     # assert 'form' in response.context
     assert not response.wsgi_request.user.is_authenticated
 
+
+@pytest.mark.django_db
+def test_logout(client, user):
+    """check if user is logged out"""
+    client.force_login(user)
+    url = reverse('logout')
+    response = client.get(url)
+    assert response.status_code == 302
+    assert response.url == reverse('base')
+
+
+
+@pytest.mark.django_db
+def test_logout(client, user):
+    """check if user is logged out"""
+    """powtarzam kod, aby mieć 2 testy, można było umieścić wszystkie asserty w jednym teście"""
+    client.force_login(user)
+    url = reverse('logout')
+    response = client.get(url)
+    assert not response.wsgi_request.user.is_authenticated
