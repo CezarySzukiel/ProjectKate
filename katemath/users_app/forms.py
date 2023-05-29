@@ -7,6 +7,7 @@ from django.forms import inlineformset_factory
 from .models import UserSettings
 
 
+#______________________________________ todo do sprawdzenia __________________________________________
 class UserSettingsForm(forms.ModelForm):
     class Meta:
         model = UserSettings
@@ -31,6 +32,7 @@ class UserCreateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
+# ______________________________________ do sprawdzenia ________________________________________
 
 
 class LoginForm(forms.Form):
@@ -59,5 +61,3 @@ class LoginForm(forms.Form):
 #         if commit:
 #             instance.save()
 #         return instance
-
-# czytam by dowiedzieć sięjak łączyć formularze i jak tworzyćformularz z kilku modeli

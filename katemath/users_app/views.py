@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 
 from users_app.forms import LoginForm, UserCreateForm, UserSettingsFormSet
+from users_app.models import UserSettings
 
 
 #UserSettingsForm
@@ -12,6 +13,7 @@ from users_app.forms import LoginForm, UserCreateForm, UserSettingsFormSet
 # Create your views here.
 
 
+# _______________________________ todo do sprawdzenia _______________________________
 class CreateUserView(View):
     def get(self, request):
         form = UserCreateForm()
@@ -25,14 +27,14 @@ class CreateUserView(View):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
             user.save()
-            user_settings_instances = formset.save(commit=False)
-            for instance in user_settings_instances:
-                instance.user = user
-                instance.save()
-
+            user.usersettings = UserSettings.objects.create(user=user) # creates a relationship with the user, needed when the level field is not checked.
+            user.save()
+            formset.save()
             login(request, user)
             return redirect('base')
-        return render(request, 'form.html', {'form': form})
+        return render(request, 'form.html', {'form': form, 'formset': formset})
+
+# _______________________________ do sprawdzenia _______________________________
 
 
 class LoginView(View):

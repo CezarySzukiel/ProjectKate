@@ -4,9 +4,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     {{ formset.management_form }}
-    {% for form in formset %}
-    {{ form.as_p }}
-    {% endfor %}
+    {{ formset.as_p }}
     <input type="submit">
  </form>
 {% endblock %}
