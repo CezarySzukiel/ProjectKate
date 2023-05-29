@@ -45,19 +45,3 @@ class LoginForm(forms.Form):
         cleaned_data['user'] = user
 
 
-# class UserSettingsForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ['username', 'email', 'first_name', 'last_name', 'password', 'UserSettings__level']
-#
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['user_settings__level'].label = 'Field level from Model UserSettings'
-#
-#     def save(self, commit=True):
-#         instance = super().save(commit=False)
-#         if commit:
-#             instance.save()
-#         return instance
-
-# czytam by dowiedzieć sięjak łączyć formularze i jak tworzyćformularz z kilku modeli

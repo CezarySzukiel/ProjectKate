@@ -60,7 +60,5 @@ class LogoutView(View):
 class UserPanelView(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user
-        points = user.usersettings.points
-        # context = {'form': UserSettingsForm()}
-        context = {'points': points}
+        context = {'user': user}
         return render(request, 'user_panel.html', context)

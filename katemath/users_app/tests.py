@@ -107,7 +107,6 @@ def test_logout(client, user):
     assert response.url == reverse('base')
 
 
-
 @pytest.mark.django_db
 def test_logout(client, user):
     """check if user is logged out"""
@@ -116,3 +115,20 @@ def test_logout(client, user):
     url = reverse('logout')
     response = client.get(url)
     assert not response.wsgi_request.user.is_authenticated
+
+
+@pytest.mark.django_db
+def test_user_panel_get(client, user):
+    """check if user panel is displayed correctly"""
+    client.force_login(user)
+    url = reverse('user_panel')
+    response = client.get(url)
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_user_panel_get_context(client, user):
+    client.force_login(user)
+    url = reverse('user_panel')
+    response = client.get(url)
+    assert 'user' in response.context
