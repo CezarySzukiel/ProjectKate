@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h3>Statystyki</h3>
+    {{ points }}
     <h3>Ustawienia</h3>
     <form method="post">
         {% csrf_token %}

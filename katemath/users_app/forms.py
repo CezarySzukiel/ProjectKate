@@ -60,3 +60,4 @@ class LoginForm(forms.Form):
 #             instance.save()
 #         return instance
 
+# czytam by dowiedzieć sięjak łączyć formularze i jak tworzyćformularz z kilku modeli
