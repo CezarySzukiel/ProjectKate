@@ -18,11 +18,13 @@ UserSettingsFormSet = inlineformset_factory(User, UserSettings, form=UserSetting
 
 
 class UserCreateForm(forms.ModelForm):
+    """Form for creating new user"""
     password1 = forms.CharField(widget=forms.PasswordInput, label="Password")
     password2 = forms.CharField(widget=forms.PasswordInput, label="Repeat password")
     user_settings = UserSettingsFormSet()
 
     def clean(self):
+        """performs the default form validation and returns processed data"""
         cleaned_data = super().clean()
         if cleaned_data['password1'] != cleaned_data['password2']:
             raise ValidationError('Hasła muszą być takie same')
@@ -34,10 +36,12 @@ class UserCreateForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
+    """Form for login"""
     username = forms.CharField(label='Username', max_length=100)
     password = forms.CharField(label='Password', max_length=100, widget=forms.PasswordInput)
 
     def clean(self):
+        """Authentication user"""
         cleaned_data = super().clean()
         user = authenticate(**cleaned_data)
         if user is None:

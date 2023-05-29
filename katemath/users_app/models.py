@@ -8,6 +8,9 @@ from exercises_app.models import Exercises
 
 
 class UserSettings(models.Model):
+    """User settings model,
+    one to one relation with User model,
+    level - True if user have advanced math skills"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     level = models.BooleanField(default=False)
     points = models.IntegerField(default=0)

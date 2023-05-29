@@ -8,14 +8,14 @@ from django.contrib.auth.models import User
 
 
 def test_create_user_get(client):
-    """check if register page is displayed correctly"""
+    """Check if register page is displayed correctly"""
     url = reverse('register')
     response = client.get(url)
     assert response.status_code == 200
 
 
 def test_create_user_get_context(client):
-    """Powtarzam kod, aby mieć 2 testy, można było umieścić 2 asserty w jednym teście"""
+    """Check if register page contains form"""
     url = reverse('register')
     response = client.get(url)
     assert 'form' in response.context
@@ -23,7 +23,7 @@ def test_create_user_get_context(client):
 
 @pytest.mark.django_db
 def test_create_user_post_valid_form(client):
-    """check if user is created when form is valid"""
+    """Check if user is created when form is valid"""
     url = reverse('register')
     data = {
         'username': 'testuser',
@@ -41,7 +41,7 @@ def test_create_user_post_valid_form(client):
 
 @pytest.mark.django_db
 def test_create_user_post_invalid_form(client):
-    """check if user is not created when passwords are different"""
+    """Check if user is not created when passwords are different"""
     url = reverse('register')
     data = {
         'username': 'testuser',
@@ -55,14 +55,14 @@ def test_create_user_post_invalid_form(client):
 
 
 def test_login_get(client):
-    """check if login page is displayed correctly"""
+    """Check if login page is displayed correctly"""
     url = reverse('login')
     response = client.get(url)
     assert response.status_code == 200
 
 
 def test_login_get_context(client):
-    """Powtarzam kod, aby mieć 2 testy, można było umieścić 2 asserty w jednym teście"""
+    """Check if login page contains form"""
     url = reverse('login')
     response = client.get(url)
     assert 'form' in response.context
@@ -70,7 +70,7 @@ def test_login_get_context(client):
 
 @pytest.mark.django_db
 def test_login_post_valid_form(client, user):
-    """check if user is logged in when form is valid"""
+    """Check if user is logged in when form is valid"""
     url = reverse('login')
     data = {
         'username': 'test_user',
@@ -84,7 +84,7 @@ def test_login_post_valid_form(client, user):
 
 @pytest.mark.django_db
 def test_login_post_invalid_form(client):
-    """check if user is not logged in when form is invalid"""
+    """Check if user is not logged in when form is invalid"""
     url = reverse('login')
     data = {
         'username': 'test_user',
@@ -99,7 +99,7 @@ def test_login_post_invalid_form(client):
 
 @pytest.mark.django_db
 def test_logout(client, user):
-    """check if user is logged out"""
+    """Check if user is logged out"""
     client.force_login(user)
     url = reverse('logout')
     response = client.get(url)
@@ -109,8 +109,7 @@ def test_logout(client, user):
 
 @pytest.mark.django_db
 def test_logout(client, user):
-    """check if user is logged out"""
-    """powtarzam kod, aby mieć 2 testy, można było umieścić wszystkie asserty w jednym teście"""
+    """Check if user is logged out"""
     client.force_login(user)
     url = reverse('logout')
     response = client.get(url)
@@ -119,7 +118,7 @@ def test_logout(client, user):
 
 @pytest.mark.django_db
 def test_user_panel_get(client, user):
-    """check if user panel is displayed correctly"""
+    """Check if user panel is displayed correctly"""
     client.force_login(user)
     url = reverse('user_panel')
     response = client.get(url)
@@ -128,6 +127,7 @@ def test_user_panel_get(client, user):
 
 @pytest.mark.django_db
 def test_user_panel_get_context(client, user):
+    """Check if user panel is displayed correctly"""
     client.force_login(user)
     url = reverse('user_panel')
     response = client.get(url)
