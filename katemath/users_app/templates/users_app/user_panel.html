@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Statystyki</h3>
+    Punkty: {{ user.usersettings.points }}
+    <h3>Ustawienia</h3>
+    Nick: {{ user.username }}<br>
+    Imię: {{ user.first_name }}<br>
+    Nazwisko: {{ user.last_name }}<br>
+    email: {{ user.email }}<br>
+    Zmień hasło<br>
+    {% if user.usersettings.level %}
+        Poziom rozszerzony
+    {% else %}
+        Poziom podstawowy
+    {% endif %}
+
+{% endblock %}

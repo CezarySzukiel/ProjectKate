@@ -1,21 +1,6 @@
 from django import forms
 
-from exercises_app.models import *
-
-
-class SortForm(forms.Form):
-    SORT_CHOICES = (
-        ('number', 'Numer'),
-        ('subsections', 'Podrozdział'),
-        ('sections', 'Rozdział'),
-    )
-    sort_by = forms.ChoiceField(choices=SORT_CHOICES, label='Sortuj po: ')
-
 
 class AnswerForm(forms.Form):
+    """Form for answer to exercise"""
     answer = forms.CharField(max_length=128, label='Odpowiedź: ')
-
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     answer = cleaned_data.get('answer')
-    #     return cleaned_data

@@ -5,6 +5,7 @@ from .models import Exercises, Answer, Subsections, Sections
 
 @pytest.fixture
 def sections():
+    """Returns a list of sections for testing"""
     lst = []
     lst.append(Sections.objects.create(name="Dział 1"))
     lst.append(Sections.objects.create(name="Dział 2"))
@@ -13,6 +14,7 @@ def sections():
 
 @pytest.fixture
 def subsections(sections):
+    """Returns a list of subsections for testing"""
     lst = []
     lst.append(Subsections.objects.create(name="Poddział 1", section=sections[0]))
     lst.append(Subsections.objects.create(name="Poddział 2", section=sections[1]))
@@ -21,7 +23,7 @@ def subsections(sections):
 
 @pytest.fixture
 def exercises(subsections):
-    """Zwraca listę zadan. exercise[2] ma kilka 3 odpowiedzi, z czego 1 poprawna"""
+    """Returns a list of 11 exercises for testing. exercise[2] has 3 answers, 1 of which is correct"""
     lst = []
     lst.append(Exercises.objects.create(description="Zadanie 1",
                                         subsection=subsections[0],
@@ -34,7 +36,6 @@ def exercises(subsections):
                                         subsection=subsections[1],
                                         difficult=2,
                                         points=2,
-                                        # solution_similar=exercises[0], # to nie zadziała bo exercises jeszcze nie istnieje?
                                         type=1,
                                         advanced_level=True))
     lst.append(Exercises.objects.create(description="Zadanie 3",
@@ -96,6 +97,7 @@ def exercises(subsections):
 
 @pytest.fixture
 def answer(exercises):
+    """Returns a list of 5 answers for testing. exercise[2] has 3 answers, 1 of which is correct"""
     lst = []
     lst.append(Answer.objects.create(exercise=exercises[0],
                                      answer="Odpowiedź 1",
