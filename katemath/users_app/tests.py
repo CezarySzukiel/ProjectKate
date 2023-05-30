@@ -74,7 +74,7 @@ def test_login_post_valid_form(client, user):
     url = reverse('login')
     data = {
         'username': 'test_user',
-        'password': 'testpassword'
+        'password': 'test_password'
     }
     response = client.post(url, data)
     assert response.status_code == 302
@@ -131,3 +131,23 @@ def test_user_panel_get_context(client, user):
     url = reverse('user_panel')
     response = client.get(url)
     assert 'user' in response.context
+
+
+@pytest.mark.django_db
+def test_user_exercises_list(client, user_exercises):
+    """Check if user exercises list is displayed correctly"""
+    client.force_login(User.objects.get(username='test_user'))
+    url = reverse('user_exercises_list')
+    response = client.get(url)
+    assert response.status_code == 200
+    assert 'exercises' in response.context
+
+
+# @pytest.mark.django_db
+# def test_user_exercises_list(client, user):
+#     """Check if user exercises list is displayed correctly"""
+#     client.force_login(user)
+#     url = reverse('user_exercises_list')
+#     response = client.get(url)
+#
+
