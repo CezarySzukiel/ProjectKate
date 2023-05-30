@@ -32,7 +32,7 @@ class CreateUserView(View):
             user_settings = UserSettings.objects.create(user=user, level=settings_form.cleaned_data['level'])
             user.usersettings = user_settings
             user.save()
-            # login(request, user)
+            login(request, user)
             return redirect('base')
         return render(request, 'form.html', {'user_form': user_form, 'settings_form': settings_form})
 
