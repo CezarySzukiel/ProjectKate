@@ -93,7 +93,6 @@ def test_login_post_invalid_form(client):
     User.objects.create_user(username='test_user', password='testpassword')
     response = client.post(url, data)
     assert response.status_code == 200
-    # assert 'form' in response.context
     assert not response.wsgi_request.user.is_authenticated
 
 
