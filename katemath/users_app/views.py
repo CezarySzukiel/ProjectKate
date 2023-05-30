@@ -19,7 +19,7 @@ class CreateUserView(View):
         """Display forms for creating new user"""
         user_form = UserCreateForm()
         settings_form = UserSettingsForm()
-        return render(request, 'form.html', {'user_form': user_form, 'settings_form': settings_form})
+        return render(request, 'users_app/create_user_form.html', {'user_form': user_form, 'settings_form': settings_form})
 
     def post(self, request):
         """Getting data from forms and creating new user"""
@@ -34,7 +34,7 @@ class CreateUserView(View):
             user.save()
             login(request, user)
             return redirect('base')
-        return render(request, 'form.html', {'user_form': user_form, 'settings_form': settings_form})
+        return render(request, 'users_app/create_user_form.html', {'user_form': user_form, 'settings_form': settings_form})
 
 
 class LoginView(View):
@@ -69,4 +69,4 @@ class UserPanelView(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user
         context = {'user': user}
-        return render(request, 'user_panel.html', context)
+        return render(request, 'users_app/user_panel.html', context)

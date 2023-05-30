@@ -38,6 +38,11 @@ class ExerciseDetailsView(View):
         correct_answer = str(correct_answer.values_list('answer', flat=True)[0])
         res = redirect('exercise_submit', pk=pk)
         if answer == correct_answer:
+            if request.user.is_authenticated:
+                user = request.user
+                user.usersettings.points += exercise.points
+                user.usersettings.save()
+            res.set_cookie('user_answer', answer)
             res.set_cookie('correct_answer', correct_answer)
             return res
         return res
