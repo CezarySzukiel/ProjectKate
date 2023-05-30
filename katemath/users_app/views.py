@@ -50,6 +50,7 @@ class LoginView(View):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = form.cleaned_data['user']
+
             if user is not None:
                 login(request, user)
             return redirect('base')
