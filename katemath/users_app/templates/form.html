@@ -2,11 +2,8 @@
 {% block content %}
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    {{ formset.management_form }}
-    {% for form in formset %}
-    {{ form.as_p }}
-    {% endfor %}
+    {{ user_form.as_p }}
+    {{ settings_form.as_p }}
     <input type="submit">
  </form>
 {% endblock %}

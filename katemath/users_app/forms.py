@@ -13,15 +13,10 @@ class UserSettingsForm(forms.ModelForm):
         fields = ['level']
 
 
-UserSettingsFormSet = inlineformset_factory(User, UserSettings, form=UserSettingsForm,
-                                            can_delete=False, max_num=2, extra=2)
-
-
 class UserCreateForm(forms.ModelForm):
     """Form for creating new user"""
     password1 = forms.CharField(widget=forms.PasswordInput, label="Password")
     password2 = forms.CharField(widget=forms.PasswordInput, label="Repeat password")
-    user_settings = UserSettingsFormSet()
 
     def clean(self):
         """performs the default form validation and returns processed data"""
