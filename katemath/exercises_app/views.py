@@ -41,7 +41,6 @@ class ExerciseDetailsView(View):
         res = redirect('exercise_submit', pk=pk)
         if answer == correct_answer:
             if request.user.is_authenticated and exercise not in user.usersettings.exercises.all():
-                alamakota = user.usersettings.exercises.all()  # zwraca queryseta z zadaniami rozwiązanymi przez usera
                 user.usersettings.points += exercise.points
                 user.usersettings.save()
                 user.usersettings.exercises.add(exercise)
