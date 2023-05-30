@@ -2,13 +2,14 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.forms import inlineformset_factory
 
 from .models import UserSettings
 
 
 class UserSettingsForm(forms.ModelForm):
+    """Form for user settings"""
     class Meta:
+        """sets which fields will be used in the form"""
         model = UserSettings
         fields = ['level']
 
@@ -26,6 +27,7 @@ class UserCreateForm(forms.ModelForm):
         return cleaned_data
 
     class Meta:
+        """sets which fields will be used in the form"""
         model = User
         fields = ['username', 'email']
 

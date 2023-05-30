@@ -31,7 +31,8 @@ class ExerciseDetailsView(View):
         return render(request, self.template_name, context)
 
     def post(self, request, pk):
-        """Gets user's answer and checks it with correct answer"""
+        """Gets user's answer and checks it with correct answer.
+        If answer is correct, user gets points"""
         answer = request.POST.get('answer', '')
         exercise = Exercises.objects.get(pk=pk)
         correct_answer = Answer.objects.filter(exercise=exercise, correct=True)
