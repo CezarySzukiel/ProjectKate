@@ -49,10 +49,6 @@ class ExerciseDetailsView(View):
             return res
         return res
 
-    # user_settings = UserSettings.objects.create(user=user, level=settings_form.cleaned_data['level'])
-    # user.usersettings = user_settings
-    # user.save()
-
 
 class SubmitView(View):
     """If user's answer is correct, displays a message"""
