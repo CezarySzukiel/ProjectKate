@@ -3,12 +3,13 @@ import pytest
 from django.test import Client
 from django.urls import reverse
 from django.contrib.auth.models import User
+from users_app.ModelBase import UsersSettings_exercises
 
 # Create your tests here.
 
 
 def test_create_user_get(client):
-    """Check if register page is displayed correctly"""
+    """Check if register page display correctly"""
     url = reverse('register')
     response = client.get(url)
     assert response.status_code == 200
@@ -55,7 +56,7 @@ def test_create_user_post_invalid_form(client):
 
 
 def test_login_get(client):
-    """Check if login page is displayed correctly"""
+    """Check if login page display correctly"""
     url = reverse('login')
     response = client.get(url)
     assert response.status_code == 200
@@ -117,7 +118,7 @@ def test_logout(client, user):
 
 @pytest.mark.django_db
 def test_user_panel_get(client, user):
-    """Check if user panel is displayed correctly"""
+    """Check if user panel display correctly"""
     client.force_login(user)
     url = reverse('user_panel')
     response = client.get(url)
@@ -126,7 +127,7 @@ def test_user_panel_get(client, user):
 
 @pytest.mark.django_db
 def test_user_panel_get_context(client, user):
-    """Check if user panel is displayed correctly"""
+    """Check if user panel display correctly"""
     client.force_login(user)
     url = reverse('user_panel')
     response = client.get(url)
@@ -135,19 +136,15 @@ def test_user_panel_get_context(client, user):
 
 @pytest.mark.django_db
 def test_user_exercises_list(client, user_exercises):
-    """Check if user exercises list is displayed correctly"""
+    """Check if user exercises list display correctly"""
     client.force_login(User.objects.get(username='test_user'))
     url = reverse('user_exercises_list')
     response = client.get(url)
+    print(response.context)
     assert response.status_code == 200
     assert 'exercises' in response.context
+    # assert user_settings.exercises in response.context['exercises']
 
 
-# @pytest.mark.django_db
-# def test_user_exercises_list(client, user):
-#     """Check if user exercises list is displayed correctly"""
-#     client.force_login(user)
-#     url = reverse('user_exercises_list')
-#     response = client.get(url)
-#
+
 

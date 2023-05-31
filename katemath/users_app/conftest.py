@@ -1,10 +1,8 @@
 import pytest
 from django.contrib.auth.models import User
-from .models import Exercises
-
-from .models import UserSettings
+from .models import UserSettings, Exercises
 from django.test import Client
-from exercises_app.conftest import exercises
+from exercises_app.conftest import exercises, subsections, sections
 
 
 @pytest.fixture
@@ -27,14 +25,29 @@ def user():
 @pytest.fixture
 def user_settings(user):
     """Create user settings for tests"""
-    return UserSettings.objects.create(user=user)
+    user_settings = UserSettings.objects.create(user=user)
+    return user_settings
 
 
 @pytest.fixture
 def user_exercises(user_settings, exercises):
-    user_exercises = []
+    print('wyprintowano', user_settings.exercises.all()) #pusty queryset
+    u_exercises = [exercises[0], exercises[1], exercises[2]]
+    # user_settings.exercises.add(exercises[0])
+    # user_settings.exercises.add(exercises[1])
+    # user_settings.exercises.add(exercises[2])
+    result = user_settings.exercises.add(*u_exercises)
+    return result
+# albo tworząc user_settings dodać exercises zaraz po userze.
+# @ pytest.fixture
+# def user_exercises(user_settings, exercises):
+#     """Create user exercises for tests"""
+#     lst = []
+#     lst.append()
 
-    for exercise in exercises:
-        user_exercises.append(user.user_settings.exercises.add(exercise))
+    # user_exercises.append(user.user_settings.exercises.create(exercises[0]))
+    # user_exercises.append('alamakota')
+    # for exercise in exercises:
+    #     user_exercises.append(user.user_settings.exercises.add(exercise))
     return user_exercises
 
