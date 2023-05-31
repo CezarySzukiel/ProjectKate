@@ -15,12 +15,8 @@ def user():
 @pytest.fixture
 def user_settings(user, exercises):
     """Create user settings for tests"""
-    exercise = exercises[0]
-    a = type(exercise) # <class 'exercises_app.models.Exercises'> (ModelBase)
-    exercise2 = exercises[1]
     user_settings = UserSettings.objects.create(user=user)
-    exercise3 = exercises[2]
-    return user_settings # type: #<class 'users_app.models.UserSettings.MultipleObjectsReturned'>
+    return user_settings
 
 
 @pytest.fixture
