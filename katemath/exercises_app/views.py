@@ -35,18 +35,23 @@ class ExerciseDetailsView(View):
         If answer is correct, user gets points"""
         answer = request.POST.get('answer', '')
         exercise = Exercises.objects.get(pk=pk)
+        user = request.user
         correct_answer = Answer.objects.filter(exercise=exercise, correct=True)
         correct_answer = str(correct_answer.values_list('answer', flat=True)[0])
         res = redirect('exercise_submit', pk=pk)
         if answer == correct_answer:
-            if request.user.is_authenticated:
-                user = request.user
+            if request.user.is_authenticated and exercise not in user.usersettings.exercises.all():
                 user.usersettings.points += exercise.points
                 user.usersettings.save()
+                user.usersettings.exercises.add(exercise)
             res.set_cookie('user_answer', answer)
             res.set_cookie('correct_answer', correct_answer)
             return res
         return res
+
+    # user_settings = UserSettings.objects.create(user=user, level=settings_form.cleaned_data['level'])
+    # user.usersettings = user_settings
+    # user.save()
 
 
 class SubmitView(View):

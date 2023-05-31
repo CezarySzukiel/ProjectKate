@@ -2,7 +2,9 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import ListView
 
+from exercises_app.models import Exercises
 from users_app.forms import LoginForm, UserCreateForm, UserSettingsForm
 from users_app.models import UserSettings
 
@@ -70,3 +72,16 @@ class UserPanelView(LoginRequiredMixin, View):
         user = request.user
         context = {'user': user}
         return render(request, 'users_app/user_panel.html', context)
+
+
+class UserExercisesListView(LoginRequiredMixin, ListView):
+    """Display user exercises"""
+    model = Exercises
+    template_name = 'users_app/user_exercises_list.html'
+    context_object_name = 'exercises'
+    paginate_by = 10
+
+    def get_queryset(self):
+        """Return exercises for logged user"""
+        return self.request.user.usersettings.exercises.all()
+
