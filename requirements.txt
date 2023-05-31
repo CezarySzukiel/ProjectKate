@@ -27,5 +27,4 @@ virtualenv==20.21.0
 virtualenv-bin==0.9.1
 Werkzeug==2.2.3
 wrapt==1.15.0
-
 pytest~=7.3.1
