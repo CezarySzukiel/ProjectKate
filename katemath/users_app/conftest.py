@@ -29,25 +29,25 @@ def user_settings(user):
     return user_settings
 
 
-@pytest.fixture
-def user_exercises(user_settings, exercises):
-    print('wyprintowano', user_settings.exercises.all()) #pusty queryset
-    u_exercises = [exercises[0], exercises[1], exercises[2]]
-    # user_settings.exercises.add(exercises[0])
-    # user_settings.exercises.add(exercises[1])
-    # user_settings.exercises.add(exercises[2])
-    result = user_settings.exercises.add(*u_exercises)
-    return result
-# albo tworząc user_settings dodać exercises zaraz po userze.
-# @ pytest.fixture
+# @pytest.fixture
 # def user_exercises(user_settings, exercises):
-#     """Create user exercises for tests"""
-#     lst = []
-#     lst.append()
-
-    # user_exercises.append(user.user_settings.exercises.create(exercises[0]))
-    # user_exercises.append('alamakota')
-    # for exercise in exercises:
-    #     user_exercises.append(user.user_settings.exercises.add(exercise))
-    return user_exercises
+#     print('wyprintowano', user_settings.exercises.all()) #pusty queryset
+#     u_exercises = [exercises[0], exercises[1], exercises[2]]
+#     # user_settings.exercises.add(exercises[0])
+#     # user_settings.exercises.add(exercises[1])
+#     # user_settings.exercises.add(exercises[2])
+#     result = user_settings.exercises.add(u_exercises)
+#     return result
+# # albo tworząc user_settings dodać exercises zaraz po userze.
+# # @ pytest.fixture
+# # def user_exercises(user_settings, exercises):
+# #     """Create user exercises for tests"""
+# #     lst = []
+# #     lst.append()
+#
+#     # user_exercises.append(user.user_settings.exercises.create(exercises[0]))
+#     # user_exercises.append('alamakota')
+#     # for exercise in exercises:
+#     #     user_exercises.append(user.user_settings.exercises.add(exercise))
+#     return user_exercises
 

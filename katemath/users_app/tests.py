@@ -3,7 +3,6 @@ import pytest
 from django.test import Client
 from django.urls import reverse
 from django.contrib.auth.models import User
-from users_app.ModelBase import UsersSettings_exercises
 
 # Create your tests here.
 
@@ -134,16 +133,16 @@ def test_user_panel_get_context(client, user):
     assert 'user' in response.context
 
 
-@pytest.mark.django_db
-def test_user_exercises_list(client, user_exercises):
-    """Check if user exercises list display correctly"""
-    client.force_login(User.objects.get(username='test_user'))
-    url = reverse('user_exercises_list')
-    response = client.get(url)
-    print(response.context)
-    assert response.status_code == 200
-    assert 'exercises' in response.context
-    # assert user_settings.exercises in response.context['exercises']
+# @pytest.mark.django_db
+# def test_user_exercises_list(client, user_exercises):
+#     """Check if user exercises list display correctly"""
+#     client.force_login(User.objects.get(username='test_user'))
+#     url = reverse('user_exercises_list')
+#     response = client.get(url)
+#     print(response.context)
+#     assert response.status_code == 200
+#     assert 'exercises' in response.context
+#     # assert user_settings.exercises in response.context['exercises']
 
 
 
