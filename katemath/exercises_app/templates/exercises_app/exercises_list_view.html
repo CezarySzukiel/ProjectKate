@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-{#    <form method="post">{% csrf_token %}{{ sort_by_sections_form }}{{ sort_by_subsections_form }}<button type="submit">Szukaj</button></form>#}
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+{#        <select multiple name="section" >#}
+{#            {% for section in sections %}#}
+{#                <option value="{{ section.id }}">{{ section }}</option>#}
+{#            {% endfor %}#}
+{#        </select>#}
+{#        <select multiple name="subsection">#}
+{#            {% for subsection in subsections %}#}
+{#                <option value="{{ subsection.id }}">{{ subsection }}</option>#}
+{#            {% endfor %}#}
+{#        </select>#}
+        <button type="submit">Szukaj</button>
+    </form>
     <ul>
-        {%  for obj in object_list %}
+        {%  for obj in exercises %}
             <li><a href="{{ obj.get_absolute_url }}">{{ obj }}</a></li>
         {% endfor %}
     </ul>
@@ -10,5 +23,7 @@
     <p>{{ exercises }}</p>
     <p>{{ subsections }}</p>
 {#    <p>{{ related }}</p>#}
+
+    <
 
 {% endblock %}
