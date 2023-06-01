@@ -5,14 +5,65 @@ from django.views.generic import ListView, CreateView, FormView
 from django.views.generic.edit import FormMixin
 
 from exercises_app.models import Exercises, Subsections, Sections, Answer
-from exercises_app.forms import AnswerForm
+from exercises_app.forms import AnswerForm, FilterForm
 
 
-class ExercisesListView(ListView):
+# class ExercisesListView(ListView):
+#     """Displays a list of exercises"""
+#     template_name = 'exercises_app/exercises_list_view.html'
+#     model = Exercises
+#     paginate_by = 10
+
+
+class ExercisesListView(View):
     """Displays a list of exercises"""
     template_name = 'exercises_app/exercises_list_view.html'
-    model = Exercises
-    paginate_by = 10
+
+    def get(self, request):
+        """Displays a list of exercises with filters"""
+        form = FilterForm()
+        form.sections.queryset = Sections.objects.get(pk=1) # coś nie działa, jak zrobić żeby w formularzu podstawić wartości pól na te okreśłone w widoku?
+        form.subsections.queryset = Subsections.objects.all()
+        sections = Sections.objects.all()
+        subsections = Subsections.objects.all()
+        exercises = Exercises.objects.all()
+        context = {
+            'exercises': exercises,
+            'sections': sections,
+            'subsections': subsections,
+            'form': FilterForm(),
+            }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        """Displays a list of exercises with filters"""
+        sections = Sections.objects.all()
+        subsections = Subsections.objects.all()
+        exercises = Exercises.objects.all()
+        alamakota = request.POST.getlist('sections')
+
+        context = {
+            'exercises': exercises,
+            'sections': sections,
+            'subsections': subsections,
+            # 'form': FilterForm(),
+            }
+        return render(request, self.template_name, context)
+        # form = FilterForm(request.POST)
+        # if form.is_valid():
+        #     sections = form.cleaned_data['sections']
+        #     subsections = form.cleaned_data['subsections']
+        #     exercises = Exercises.objects.filter(section__in=sections, subsection__in=subsections)
+        #     context = {
+        #         'exercises': exercises,
+        #         'sections': sections,
+        #         'subsections': subsections,
+        #         'form': FilterForm(),
+        #     }
+        #     return render(request, self.template_name, context)
+        # return redirect('exercises_list')
+
+# Exercises.objects.values_list('section', flat=True).distinct() fajne jest metodą, która zwraca listę wartości pola section dla wszystkich obiektów Exercises.
 
 
 class ExerciseDetailsView(View):
