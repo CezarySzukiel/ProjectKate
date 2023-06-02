@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+{#    <form method="post">{% csrf_token %}{{ sort_by_sections_form }}{{ sort_by_subsections_form }}<button type="submit">Szukaj</button></form>#}
+    <ul>
+        {%  for obj in object_list %}
+            <li><a href="{{ obj.get_absolute_url }}">{{ obj }}</a></li>
+        {% endfor %}
+    </ul>
+    <p>{{ sections }}</p> {# todo to delete #}
+    <p>{{ exercises }}</p>
+    <p>{{ subsections }}</p>
+{#    <p>{{ related }}</p>#}
+
+{% endblock %}
