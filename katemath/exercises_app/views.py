@@ -30,45 +30,24 @@ class ExercisesListView(View):
 
     def post(self, request):
         """Displays a list of exercises with filters"""
+        # prawie dobrze, ale jeśli zaznaczę subsekcję z geometrii a następnie sekcję ciągi to jest błąd
         form = FilterForm(request.POST)
-        if form.is_valid():
-            sectionsform = form.data.getlist('sections') #zwraca listę idików przesłaną w formularzu
-            subsectionsform = form.data.getlist('subsections')
-        sections = Sections.objects.filter(pk__in=sectionsform) # zwraca queryset z obiektami Sections o id z listy sectionsf
-        subsections = Subsections.objects.filter(pk__in=subsectionsform)
-
-        # cel: zwrócić queryset? z obiektami Subsections, które mają section__in=sections
-        # cel: zwrócić queryset? z obiektami Exercises, które mają section__in=sections i subsection__in=subsections
-
-        subsections_search = Subsections.objects.filter(section__in=sectionsform) #zwraca queruset z obiektami Subsections, które mają section__in=sectionsform
-        exercises_search = Exercises.objects.filter(subsection__in=subsectionsform) #zwraca queruset z obiektami Exercises, które mają subsection__in=subsectionsform
-
-        # cel: przesłać formularz ze zmodyfikowaną listą wyboru sections i subsections
-
-
-        exercises = Exercises.objects.all()
+        sections_form = form.data.getlist('sections') #zwraca listę idików przesłaną w formularzu
+        subsections_form = form.data.getlist('subsections')
+        sections = Sections.objects.filter(pk__in=sections_form) # zwraca queryset z obiektami Sections o id z listy sectionsform
+        subsections = Subsections.objects.filter(pk__in=subsections_form)
+        if sections:
+            form.set_subsections_queryset(sections)
+            exercises = Exercises.objects.filter(subsection__in=Subsections.objects.filter(section__in=sections_form))
+        if subsections:
+            exercises = Exercises.objects.filter(subsection__in=subsections)
+        elif not sections and not subsections:
+            exercises = Exercises.objects.all()
         context = {
             'exercises': exercises,
-            # 'sections': sections,
-            # 'subsections': subsections,
             'form': form,
             }
         return render(request, self.template_name, context)
-        # form = FilterForm(request.POST)
-        # if form.is_valid():
-        #     sections = form.cleaned_data['sections']
-        #     subsections = form.cleaned_data['subsections']
-        #     exercises = Exercises.objects.filter(section__in=sections, subsection__in=subsections)
-        #     context = {
-        #         'exercises': exercises,
-        #         'sections': sections,
-        #         'subsections': subsections,
-        #         'form': FilterForm(),
-        #     }
-        #     return render(request, self.template_name, context)
-        # return redirect('exercises_list')
-
-# Exercises.objects.values_list('section', flat=True).distinct() fajne jest metodą, która zwraca listę wartości pola section dla wszystkich obiektów Exercises.
 
 
 class ExerciseDetailsView(View):

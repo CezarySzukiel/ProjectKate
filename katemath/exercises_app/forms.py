@@ -9,8 +9,19 @@ class AnswerForm(forms.Form):
 
 class FilterForm(forms.Form):
     """Form for filtering exercises"""
-    sections_choices = Sections.objects.all()
-    subsections_choices = Subsections.objects.all()
-    sections = forms.ModelMultipleChoiceField(queryset=sections_choices, widget=forms.CheckboxSelectMultiple)
-    subsections = forms.ModelMultipleChoiceField(queryset=subsections_choices, widget=forms.CheckboxSelectMultiple)
+    sections = forms.ModelMultipleChoiceField(queryset=Sections.objects.all(),
+                                              widget=forms.CheckboxSelectMultiple,
+                                              required=False)
+    subsections = forms.ModelMultipleChoiceField(queryset=Subsections.objects.all(),
+                                                 widget=forms.CheckboxSelectMultiple,
+                                                 required=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['subsections'].queryset = Subsections.objects.all()
+
+    def set_subsections_queryset(self, sections_ids):
+        self.fields['subsections'].queryset = Subsections.objects.filter(section__in=sections_ids)
+        # self.fields['subsections'].initial = Subsections.objects.filter(section__in=sections_ids)
+        # self.fields['subsections'].widget.attrs.update({'disabled': 'disabled'})
 
