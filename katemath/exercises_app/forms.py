@@ -9,7 +9,7 @@ class AnswerForm(forms.Form):
 
 class FilterForm(forms.Form):
     """Form for filtering exercises"""
-    sections_choices = Sections.objects.filter(pk=1)
+    sections_choices = Sections.objects.all()
     subsections_choices = Subsections.objects.all()
     sections = forms.ModelMultipleChoiceField(queryset=sections_choices, widget=forms.CheckboxSelectMultiple)
     subsections = forms.ModelMultipleChoiceField(queryset=subsections_choices, widget=forms.CheckboxSelectMultiple)

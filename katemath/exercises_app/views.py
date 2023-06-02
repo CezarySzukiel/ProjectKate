@@ -21,33 +21,35 @@ class ExercisesListView(View):
 
     def get(self, request):
         """Displays a list of exercises with filters"""
-        # form.sections.queryset = Sections.objects.get(pk=1) # coś nie działa, jak zrobić żeby w formularzu podstawić wartości pól na te okreśłone w widoku?
-        # form.subsections.queryset = Subsections.objects.all()
-        sections = Sections.objects.all()
-        subsections = Subsections.objects.all()
         exercises = Exercises.objects.all()
-        form = FilterForm()
-        form.sections = sections
         context = {
             'exercises': exercises,
-            'sections': sections,
-            'subsections': subsections,
-            'form': form,
+            'form': FilterForm(),
             }
         return render(request, self.template_name, context)
 
     def post(self, request):
         """Displays a list of exercises with filters"""
-        sections = Sections.objects.all()
-        subsections = Subsections.objects.all()
-        exercises = Exercises.objects.all()
-        alamakota = request.POST.getlist('sections')
+        form = FilterForm(request.POST)
+        if form.is_valid():
+            sectionsform = form.data.getlist('sections') #zwraca listę idików przesłaną w formularzu
+            subsectionsform = form.data.getlist('subsections')
+        sections = Sections.objects.filter(pk__in=sectionsform) # zwraca queryset z obiektami Sections o id z listy sectionsf
+        subsections = Subsections.objects.filter(pk__in=subsectionsform)
 
+        # cel: zwrócić queryset? z obiektami Subsections, które mają section__in=sections
+        # cel: zwrócić queryset? z obiektami Exercises, które mają section__in=sections i subsection__in=subsections
+
+        subsections_search = Subsections.objects.filter(section__in=sectionsform) #zwraca queruset z obiektami Subsections, które mają section__in=sectionsform
+        exercises_search = Exercises.objects.filter(subsection__in=subsectionsform) #zwraca queruset z obiektami Exercises, które mają subsection__in=subsectionsform
+
+
+        exercises = Exercises.objects.all()
         context = {
             'exercises': exercises,
-            'sections': sections,
-            'subsections': subsections,
-            # 'form': FilterForm(),
+            # 'sections': sections,
+            # 'subsections': subsections,
+            'form': form,
             }
         return render(request, self.template_name, context)
         # form = FilterForm(request.POST)
