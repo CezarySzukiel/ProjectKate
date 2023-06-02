@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Zadania rozwiązane przez Ciebie:</h1>
+    <ol>
+        {% for exercise in exercises %}
+        <li>{{ exercise }}</li>
+        {% endfor %}
+    </ol>
+{% endblock %}

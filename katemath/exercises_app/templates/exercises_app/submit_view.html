@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if request.COOKIES.correct_answer %}
+        <h1>Poprawna odpowiedź!</h1>
+        <h3>{{ request.COOKIES.correct_answer }}</h3>
+    {% else %}
+        <h1>Niepoprawna odpowiedź!</h1>
+    {% endif %}
+{% endblock %}
