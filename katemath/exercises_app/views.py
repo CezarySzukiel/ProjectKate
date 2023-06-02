@@ -43,6 +43,8 @@ class ExercisesListView(View):
         subsections_search = Subsections.objects.filter(section__in=sectionsform) #zwraca queruset z obiektami Subsections, które mają section__in=sectionsform
         exercises_search = Exercises.objects.filter(subsection__in=subsectionsform) #zwraca queruset z obiektami Exercises, które mają subsection__in=subsectionsform
 
+        # cel: przesłać formularz ze zmodyfikowaną listą wyboru sections i subsections
+
 
         exercises = Exercises.objects.all()
         context = {
