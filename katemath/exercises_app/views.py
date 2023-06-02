@@ -21,17 +21,18 @@ class ExercisesListView(View):
 
     def get(self, request):
         """Displays a list of exercises with filters"""
-        form = FilterForm()
-        form.sections.queryset = Sections.objects.get(pk=1) # coś nie działa, jak zrobić żeby w formularzu podstawić wartości pól na te okreśłone w widoku?
-        form.subsections.queryset = Subsections.objects.all()
+        # form.sections.queryset = Sections.objects.get(pk=1) # coś nie działa, jak zrobić żeby w formularzu podstawić wartości pól na te okreśłone w widoku?
+        # form.subsections.queryset = Subsections.objects.all()
         sections = Sections.objects.all()
         subsections = Subsections.objects.all()
         exercises = Exercises.objects.all()
+        form = FilterForm()
+        form.sections = sections
         context = {
             'exercises': exercises,
             'sections': sections,
             'subsections': subsections,
-            'form': FilterForm(),
+            'form': form,
             }
         return render(request, self.template_name, context)
 
