@@ -75,7 +75,6 @@ header {
   /*background-color: rgba(255, 255, 255, 0.0);*/
   padding: 30px;
   margin: 0 auto;
-  /*font-family: Calibri, sans-serif;*/
 
 }
 
@@ -110,7 +109,6 @@ header {
   background-size: cover;
   height: 100vh;
   display: flex;
-  font-family: Calibri, sans-serif;
 }
 
 .filter-form {
