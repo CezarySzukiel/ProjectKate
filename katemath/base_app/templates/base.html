@@ -7,26 +7,50 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Katemath</title>
-    <link rel="stylesheet" type="text/css" href={% static 'style.css' %}>
+    <link rel="stylesheet" type="text/css" href={% static 'styles.css' %}>
 </head>
 <body>
     <header>
         <nav>
-            <ul class="menu">
-                <li><a href="{% url 'exercises_list' %}">Zadania</a></li>
+            <div class="menu">
+            <a href="{% url 'base' %}">Katemath</a>
+                <ul>
+                    <li><a href="{% url 'exercises_list' %}">Zadania</a></li>
+                </ul>
                 {% if not user.is_authenticated %}
-                    <li><a href="{% url 'register' %}">Zarejestruj</a></li>
-                    <li><a href="{% url 'login' %}">Zaloguj</a></li>
+                    <div class="right-side-menu">
+                        <ul>
+                            <li><a href="{% url 'register' %}">Zarejestruj</a></li>
+                            <li><a href="{% url 'login' %}">Zaloguj</a></li>
+                        </ul>
+                    </div>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li><a  href="{% url 'user_panel' %}">{{ user.username }}<i class="fas fa-user"></i></a></li>
-                    <li><a href="{% url 'logout' %}">wyloguj</a> </li>
+                    <div class="right-side-menu">
+                        <ul>
+                            <li><a  href="{% url 'user_panel' %}">{{ user.username }}<i class="fas fa-user"></i></a></li>
+                            <li><a href="{% url 'logout' %}">wyloguj</a> </li>
+                        </ul>
+                    </div>
                 {% endif %}
-            </ul>
+            </div>
         </nav>
     </header>
 {% block content %}
-    <h1>Base template</h1>
+    <div class="home-page-view">
+        <h1>Katemath</h1>
+        <p>
+            "Katemath to innowacyjna aplikacja przeznaczona dla uczniów szkół średnich,
+            która sprawia, że nauka matematyki staje się łatwa i przyjemna.
+            Z naszą aplikacją możesz łatwo przeglądać i wyszukiwać zadania matematyczne,
+            a następnie sprawdzać swoje rozwiązania.
+            Zdobądź punkty za poprawne odpowiedzi i śledź swoje postępy dzięki przejrzystym statystykom.
+        </p>
+        <h3>Rozwiązuj zadania!</h3>
+        <h3>Zdobywaj punkty, podbijaj statystyki!</h3>
+        <h3>Ćwicz swoje umiejętności!</h3>
+        <h3>Stwórz swój plan nauki!</h3>
+    </div>
 {% endblock %}
 </body>
 </html>

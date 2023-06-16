@@ -1,0 +1,106 @@
+body {
+  background-color: #F4F4F4;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #FFF;
+  padding: 10px 20px;
+}
+
+.logo {
+  width: 50px;
+}
+
+.logo img {
+  max-width: 100%;
+}
+
+.menu ul {
+  list-style: none;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu ul {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu a {
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.home-page-view {
+  margin-left: 20px;
+}
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.home-page-view {
+  background-color: #F4F4F4;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  /*background-color: #e9e9e9;*/
+}
+
+.home-page-view h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.home-page-view p {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.home-page-view h3 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Dodatkowe style dla tła */
+
+body {
+  background-color: #e9e9e9;
+}
