@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Zadania rozwiązane przez Ciebie:</h1>
-    <ol>
-        {% for exercise in exercises %}
-        <li>{{ exercise }}</li>
-        {% endfor %}
-    </ol>
+    <div class="user-exercises-list-view">
+        <h1>Zadania rozwiązane przez Ciebie:</h1>
+        <ol>
+            {% for exercise in exercises %}
+            <li><a href="{{ exercise.get_absolute_url }}">{{ exercise }}</a></li>
+            {% endfor %}
+        </ol>
+    <div>
 {% endblock %}
