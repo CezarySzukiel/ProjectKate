@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: Calibri, sans-serif;
 }
 
 header {
@@ -74,7 +75,7 @@ header {
   /*background-color: rgba(255, 255, 255, 0.0);*/
   padding: 30px;
   margin: 0 auto;
-
+  /*font-family: Calibri, sans-serif;*/
 
 }
 
@@ -98,7 +99,7 @@ header {
   color: rgb(245, 245, 245);
 }
 
-.background1 {
+.background-base {
   background-image: url(/static/images/pexels-andrea-piacquadio-3771074.jpg);
   background-size: cover;
   height: 100vh;
@@ -109,6 +110,7 @@ header {
   background-size: cover;
   height: 100vh;
   display: flex;
+  font-family: Calibri, sans-serif;
 }
 
 .filter-form {
