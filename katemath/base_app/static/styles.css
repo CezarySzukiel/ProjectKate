@@ -125,3 +125,57 @@ header {
   color: black;
   text-decoration: none;
 }
+
+.exercises-detail-view {
+  background-image: url(/static/images/pexels-monstera-7794361.jpg);
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  padding-top: 20px;
+  padding-left: 40px;
+  flex-direction: column;
+}
+
+.submit-view {
+    background-image: url(/static/images/pexels-monstera-7794361.jpg);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    padding-top: 20px;
+    padding-left: 40px;
+    flex-direction: column;
+}
+
+.user-panel-view {
+  background-image: url(/static/images/pexels-monstera-7794361.jpg);
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  padding-top: 20px;
+  padding-left: 40px;
+  flex-direction: column;
+}
+
+.user-exercises-list-view {
+    background-image: url(/static/images/pexels-monstera-7794361.jpg);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    padding-top: 20px;
+    padding-left: 40px;
+    flex-direction: column;
+}
+
+.user-exercises-list-view li a {
+    color: black;
+    text-decoration: none;
+}
+
+.form-view {
+    background-image: url(/static/images/pexels-monstera-7794361.jpg);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    padding-top: 20px;
+    justify-content: center;
+}
