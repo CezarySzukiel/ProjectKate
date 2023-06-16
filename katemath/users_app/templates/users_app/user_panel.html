@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h3>Statystyki</h3>
-    Punkty: {{ user.usersettings.points }}
-    <h3>Ustawienia</h3>
-    Nick: {{ user.username }}<br>
-    Imię: {{ user.first_name }}<br>
-    Nazwisko: {{ user.last_name }}<br>
-    email: {{ user.email }}<br>
-    Poziom rozszerzony<br>
-    Zmień hasło
-    {% if user.usersettings.level %}
-    {% else %}
-        Poziom podstawowy
-    {% endif %}
+    <div class="user-panel-view">
+        <h3>Statystyki</h3>
+        Punkty: {{ user.usersettings.points }}
+        <h3>Ustawienia</h3>
+        Nick: {{ user.username }}<br>
+        Imię: {{ user.first_name }}<br>
+        Nazwisko: {{ user.last_name }}<br>
+        email: {{ user.email }}<br>
+        Poziom rozszerzony<br>
+        Zmień hasło
+        {% if user.usersettings.level %}
+        {% else %}
+            Poziom podstawowy
+        {% endif %}
 
-    <h3>Lista zadań rozwiązanych przez Ciebie</h3>
-    <a href="{% url 'user_exercises_list' %}" class="button">Przejdź</a>
+        <h3>Lista zadań rozwiązanych przez Ciebie</h3>
+        <a href="{% url 'user_exercises_list' %}" class="button">Przejdź</a>
+    </div>
 {% endblock %}
