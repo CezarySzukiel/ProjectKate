@@ -72,10 +72,7 @@ header {
 .home-page-view {
 
   /*background-color: rgba(255, 255, 255, 0.0);*/
-  padding: 0px;
-  border-radius: 0px;
-  /*max-width: 600px;*/
-
+  padding: 30px;
   margin: 0 auto;
 
 }
@@ -83,23 +80,21 @@ header {
 .home-page-view h1 {
   font-size: 24px;
   margin-bottom: 0px;
-  color: rgba(245, 245, 245, 0.8);
-  padding-top: 50px
-
+  color: rgb(245, 245, 245);
 }
 
 .home-page-view p {
-  color: #555;
+
   font-size: 16px;
   margin-bottom: 20px;
-  color: rgba(245, 245, 245, 0.8);
+  color: rgb(245, 245, 245);
 }
 
 .home-page-view h3 {
-  color: #333;
+
   font-size: 20px;
   margin-bottom: 10px;
-  color: rgba(245, 245, 245, 0.8);
+  color: rgb(245, 245, 245);
 }
 
 .background1 {
@@ -122,5 +117,10 @@ header {
 .exercises-list {
   padding-top: 30px;
   /*padding-left: 20px;*/
+  text-decoration: none;
+}
+
+.exercises-list li a {
+  color: black;
   text-decoration: none;
 }
