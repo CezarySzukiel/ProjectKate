@@ -5,14 +5,49 @@ from django.views.generic import ListView, CreateView, FormView
 from django.views.generic.edit import FormMixin
 
 from exercises_app.models import Exercises, Subsections, Sections, Answer
-from exercises_app.forms import AnswerForm
+from exercises_app.forms import AnswerForm, FilterForm
 
 
-class ExercisesListView(ListView):
+# class ExercisesListView(ListView):
+#     """Displays a list of exercises"""
+#     template_name = 'exercises_app/exercises_list_view.html'
+#     model = Exercises
+#     paginate_by = 10
+
+
+class ExercisesListView(View):
     """Displays a list of exercises"""
     template_name = 'exercises_app/exercises_list_view.html'
-    model = Exercises
-    paginate_by = 10
+
+    def get(self, request):
+        """Displays a list of exercises with filters"""
+        exercises = Exercises.objects.all()
+        context = {
+            'exercises': exercises,
+            'form': FilterForm(),
+            }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        """Displays a list of exercises with filters"""
+        # prawie dobrze, ale jeśli zaznaczę subsekcję z geometrii a następnie sekcję ciągi to jest błąd
+        form = FilterForm(request.POST)
+        sections_form = form.data.getlist('sections') #zwraca listę idików przesłaną w formularzu
+        subsections_form = form.data.getlist('subsections')
+        sections = Sections.objects.filter(pk__in=sections_form) # zwraca queryset z obiektami Sections o id z listy sectionsform
+        subsections = Subsections.objects.filter(pk__in=subsections_form)
+        if sections:
+            form.set_subsections_queryset(sections)
+            exercises = Exercises.objects.filter(subsection__in=Subsections.objects.filter(section__in=sections_form))
+        if subsections:
+            exercises = Exercises.objects.filter(subsection__in=subsections)
+        elif not sections and not subsections:
+            exercises = Exercises.objects.all()
+        context = {
+            'exercises': exercises,
+            'form': form,
+            }
+        return render(request, self.template_name, context)
 
 
 class ExerciseDetailsView(View):

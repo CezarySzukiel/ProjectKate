@@ -9,9 +9,6 @@ from users_app.forms import LoginForm, UserCreateForm, UserSettingsForm
 from users_app.models import UserSettings
 
 
-#UserSettingsForm
-
-
 # Create your views here.
 
 
@@ -84,4 +81,6 @@ class UserExercisesListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         """Return exercises for logged user"""
         return self.request.user.usersettings.exercises.all()
+
+
 

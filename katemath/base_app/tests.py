@@ -23,4 +23,4 @@ def test_base_view_content():
     client = Client()
     url = reverse('base')
     response = client.get(url)
-    assert 'Base template' in response.content.decode()
+    assert 'Katemath' in response.content.decode()
