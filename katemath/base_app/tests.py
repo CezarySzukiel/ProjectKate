@@ -8,6 +8,7 @@ def test_configuration():
     """Test that configuration is OK."""
     assert True
 
+
 @pytest.mark.django_db
 def test_base_view():
     """Test that base view is working."""

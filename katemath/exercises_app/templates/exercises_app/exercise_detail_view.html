@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="exercises-detail-view">
-        <p>{{ exercise }}
+        {{ exercise }}
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
