@@ -9,12 +9,8 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import os
-from pathlib import Path
-from urllib.parse import urlparse
 
-from django.core.management.utils import get_random_secret_key
-from django.template.context_processors import static
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,14 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
-
-
+SECRET_KEY = 'django-insecure-zi=f32i43*c!ho6z&f(z_-p-wq_!=zdc_crwb4d0+&*ponw0jg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -82,29 +76,16 @@ WSGI_APPLICATION = 'katemath.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if os.getenv("DATABASE_URL", "") != "":
-    r = urlparse(os.environ.get("DATABASE_URL"))
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": os.path.relpath(r.path, "/"),
-            "USER": r.username,
-            "PASSWORD": r.password,
-            "HOST": r.hostname,
-            "PORT": r.port,
-            "OPTIONS": {"sslmode": "require"},
-        }
+
+DATABASES = {
+    'default': {
+        'HOST': '127.0.0.1',
+        'NAME': 'Katemath',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'USER': 'postgres',
+        'PASSWORD': 'coderslab',
     }
-else:
-    DATABASES = {
-        'default': {
-            'HOST': '127.0.0.1',
-            'NAME': 'Katemath',
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'USER': 'postgres',
-            'PASSWORD': 'coderslab',
-        }
-    }
+}
 
 
 # Password validation
@@ -142,7 +123,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
