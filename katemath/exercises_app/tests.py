@@ -1,9 +1,7 @@
-from django.test import TestCase
 import pytest as pytest
 from django.test import Client
 from django.urls import reverse
-from exercises_app.models import Exercises, Answer
-from exercises_app.forms import AnswerForm
+
 
 # Create your tests here.
 

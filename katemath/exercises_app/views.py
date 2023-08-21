@@ -1,8 +1,5 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, CreateView, FormView
-from django.views.generic.edit import FormMixin
 
 from exercises_app.models import Exercises, Subsections, Sections, Answer
 from exercises_app.forms import AnswerForm, FilterForm

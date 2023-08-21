@@ -1,5 +1,5 @@
 from django import forms
-from .models import Exercises, Sections, Subsections
+from .models import Sections, Subsections
 
 
 class AnswerForm(forms.Form):
