@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'base_app',
     'exercises_app',
     'users_app',
+    'api',
 ]
 
 MIDDLEWARE = [
