@@ -5,7 +5,7 @@ from django.db import models
 from django.urls import reverse
 
 
-# Create your models here.
+# TODO add related name to all many to many and foreign keys
 
 
 class Exercises(models.Model):
