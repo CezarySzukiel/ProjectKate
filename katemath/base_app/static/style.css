@@ -1,0 +1,39 @@
+/* Resetting default styles for ul and li */
+ul.menu, ul.menu li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Menu styling */
+ul.menu {
+    background-color: #999; /* Menu Background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+ul.menu li {
+    margin-right: 10px;
+}
+
+ul.menu li:last-child {
+    margin-right: 0;
+}
+
+ul.menu li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+ul.menu li a:hover {
+    background-color: #555;
+}
+
+/* User icon styling */
+ul.menu li:last-child a i {
+    font-size: 18px;
+}

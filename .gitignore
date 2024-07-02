@@ -1,0 +1,12 @@
+**/*.pyc
+.idea
+.vscode
+venv
+local_settings.py
+dataSources.xml
+mics.xml
+modules.xml
+profiles_settings.xml
+Project_Default.xml
+Project_Kate.iml
+vcs.xml
